@@ -1,37 +1,67 @@
 import {
-  IconType,
+  type IconType,
   SiGithub,
+  SiGitlab,
   SiGmail,
+  SiLinktree,
   SiLinkedin,
   SiMedium,
 } from '@icons-pack/react-simple-icons'
 
-export default function Links() {
-  const links: { icon: IconType; href: string }[] = [
-    {
-      icon: SiGmail,
-      href: 'mailto:johndoe@gmail.com',
-    },
-    {
-      icon: SiGithub,
-      href: 'https://github.com/johndoe',
-    },
-    {
-      icon: SiLinkedin,
-      href: 'https://www.linkedin.com/in/johndoe/',
-    },
-    {
-      icon: SiMedium,
-      href: 'https://medium.com/@johndoe',
-    },
+import type { Lang } from '@/i18n/config'
+import { DICT } from '@/i18n/dictionaries'
+import { pressable, surface } from '@/lib/styles'
+
+/* E-posta adresini buradan değiştirmen yeterli. */
+const EMAIL = 'selcuk.ozdemir2360@gmail.com'
+
+const PROFILES: {
+  icon: IconType
+  key: keyof typeof DICT.tr.links
+  href: string
+}[] = [
+  { icon: SiGithub, key: 'github', href: 'https://github.com/SelcukOzdemir23' },
+  {
+    icon: SiLinkedin,
+    key: 'linkedin',
+    href: 'https://www.linkedin.com/in/muserref-selcuk-ozdemir/',
+  },
+  { icon: SiMedium, key: 'medium', href: 'https://medium.com/@muserrefselcuk' },
+  { icon: SiGitlab, key: 'gitlab', href: 'https://gitlab.com/SelcukOzdemir23' },
+  {
+    icon: SiLinktree,
+    key: 'linktree',
+    href: 'https://linktr.ee/muserrefselcukozdemir',
+  },
+]
+
+export default function Links({ lang }: { lang: Lang }) {
+  const dict = DICT[lang]
+
+  const links = [
+    { icon: SiGmail, label: dict.links.email, href: `mailto:${EMAIL}` },
+    ...PROFILES.map((profile) => ({
+      icon: profile.icon,
+      label: dict.links[profile.key],
+      href: profile.href,
+    })),
   ]
 
   return (
-    <div className="mr-auto mt-20 flex w-full flex-wrap items-center gap-10">
-      {links.map((link, id) => {
+    <div className="mt-8 flex flex-wrap gap-3">
+      {links.map(({ icon: Icon, label, href }) => {
+        const isMail = href.startsWith('mailto:')
+
         return (
-          <a target="_blank" key={id} href={link.href}>
-            <link.icon title="" />
+          <a
+            key={href}
+            className={`${surface} ${pressable} inline-flex items-center gap-2 px-3 py-1.5 font-mono text-sm`}
+            href={href}
+            rel={isMail ? undefined : 'noreferrer'}
+            target={isMail ? undefined : '_blank'}
+          >
+            <Icon aria-hidden className="size-4" />
+            {label}
           </a>
         )
       })}

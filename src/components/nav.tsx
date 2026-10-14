@@ -1,46 +1,75 @@
 'use client'
 
+import clsx from 'clsx'
 import { Link } from 'next-view-transitions'
 import { usePathname } from 'next/navigation'
-import clsx from 'clsx'
-import { ThemeSwitcher } from './theme-switcher'
 
-export default function Nav() {
-  const path = usePathname()
+import { ThemeSwitcher } from './theme-switcher'
+import { langPath, pageHref, type Lang } from '@/i18n/config'
+import { DICT } from '@/i18n/dictionaries'
+import { BASE_PATH } from '@/lib/site'
+
+/*
+  basePath (GitHub Pages) ve dil önekini ayıklayıp aktif sekmeyi
+  bulur. Örnek: '/portfolio/en/about/' -> '/about'
+*/
+function currentPage(path: string, lang: Lang) {
+  let rest = path
+
+  if (BASE_PATH && rest.startsWith(BASE_PATH)) {
+    rest = rest.slice(BASE_PATH.length)
+  }
+
+  const prefix = langPath(lang)
+
+  if (prefix && rest.startsWith(prefix)) {
+    rest = rest.slice(prefix.length)
+  }
+
+  rest = rest.replace(/\/+$/, '')
+
+  return rest === '' ? '/' : rest
+}
+
+export default function Nav({ lang }: { lang: Lang }) {
+  const path = usePathname() ?? '/'
+  const dict = DICT[lang]
+  const active = currentPage(path, lang)
+  const other: Lang = lang === 'tr' ? 'en' : 'tr'
 
   const links = [
-    {
-      path: '/',
-      text: 'Home',
-    },
-    {
-      path: '/about',
-      text: 'About',
-    },
-    {
-      path: '/work',
-      text: 'Work',
-    },
+    { page: '/', label: dict.nav.home },
+    { page: '/about', label: dict.nav.about },
+    { page: '/work', label: dict.nav.work },
   ]
 
   return (
-    <div className="fixed top-5 left-0 z-50 w-full">
-      <nav className="text-main-foreground border-border shadow-shadow rounded-base bg-main font-base w450:gap-4 mx-auto flex w-max gap-5 border-2 p-2.5 px-5 text-sm sm:text-base">
+    <div className="fixed top-4 left-0 z-50 w-full px-4">
+      <nav className="border-border rounded-base bg-main text-main-foreground shadow-shadow mx-auto flex w-max items-center gap-1 border-2 p-1.5 font-mono text-sm">
         {links.map((link) => {
           return (
             <Link
-              key={link.path}
+              key={link.page}
               className={clsx(
-                'hover:border-border rounded-base border-2 px-2 py-1 transition-colors',
-                path === link.path ? 'border-border' : 'border-transparent',
+                'rounded-base px-3 py-1.5 transition-colors',
+                active === link.page
+                  ? 'bg-main-foreground text-main'
+                  : 'hover:bg-main-foreground/15',
               )}
-              href={link.path}
+              href={pageHref(lang, link.page)}
             >
-              {link.text}
+              {link.label}
             </Link>
           )
         })}
-        <ThemeSwitcher />
+        <Link
+          aria-label={dict.nav.language}
+          className="rounded-base hover:bg-main-foreground/15 px-3 py-1.5 transition-colors"
+          href={pageHref(other, active)}
+        >
+          {other}
+        </Link>
+        <ThemeSwitcher label={dict.nav.theme} />
       </nav>
     </div>
   )

@@ -1,24 +1,41 @@
 import PAST_ROLES from '@/data/experience'
 
-export default function Experience() {
+import Section from '@/components/section'
+import { formatRange, t, type Lang } from '@/i18n/config'
+import { DICT } from '@/i18n/dictionaries'
+import { meta } from '@/lib/styles'
+
+export default function Experience({ lang }: { lang: Lang }) {
+  const dict = DICT[lang]
+
   return (
-    <div className="mb-16">
-      <h2 className="mb-8 text-xl font-heading sm:text-2xl">Experience</h2>
+    <Section title={dict.about.experience}>
+      <div className="space-y-8">
+        {PAST_ROLES.map((role) => {
+          return (
+            <div key={`${role.company.en}-${role.role.en}`}>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h3 className="font-heading text-base sm:text-lg">
+                  {t(lang, role.role)}, {t(lang, role.company)}
+                </h3>
 
-      {PAST_ROLES.map((role, id) => {
-        return (
-          <div className="mb-8" key={id}>
-            <h3 className="text-lg font-heading sm:text-xl">
-              {role.role} @ {role.company}
-            </h3>
+                <p className={meta}>
+                  {formatRange(
+                    lang,
+                    role.startDate,
+                    role.endDate,
+                    dict.present,
+                  )}
+                </p>
+              </div>
 
-            <p className="mb-4 mt-0.5 text-sm">
-              {role.startDate} - {role.endDate}
-            </p>
-            <p>{role.description}</p>
-          </div>
-        )
-      })}
-    </div>
+              <p className="mt-2 text-sm leading-relaxed sm:text-base">
+                {t(lang, role.description)}
+              </p>
+            </div>
+          )
+        })}
+      </div>
+    </Section>
   )
 }

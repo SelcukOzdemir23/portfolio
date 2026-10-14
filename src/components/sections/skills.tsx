@@ -1,41 +1,33 @@
 import SKILLS from '@/data/skills'
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
+import Section from '@/components/section'
+import { t, type Lang } from '@/i18n/config'
+import { DICT } from '@/i18n/dictionaries'
+import { chip, meta } from '@/lib/styles'
 
-export default function Skills() {
+export default function Skills({ lang }: { lang: Lang }) {
   return (
-    <div className="mb-16">
-      <h2 className="mb-8 text-xl font-heading sm:text-2xl">Skills</h2>
+    <Section title={DICT[lang].about.skills}>
+      <div className="space-y-8">
+        {SKILLS.map(({ field, skills }) => {
+          return (
+            <div key={field.en}>
+              <h3 className={meta}>{t(lang, field)}</h3>
 
-      {SKILLS.map((item, id) => {
-        return (
-          <div key={id}>
-            <h3 className="mb-4 text-lg font-heading sm:text-xl">
-              {item.field}
-            </h3>
-
-            <div className="mb-10 flex flex-wrap gap-5">
-              {item.skills.map((skill, id) => {
-                return (
-                  <TooltipProvider key={id}>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <skill.icon className="h-8 w-8" title="" />
-                      </TooltipTrigger>
-                      <TooltipContent>{skill.skill}</TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                )
-              })}
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {skills.map(({ skill, icon: Icon }) => {
+                  return (
+                    <li className={chip} key={skill}>
+                      {Icon && <Icon aria-hidden className="size-4" />}
+                      {skill}
+                    </li>
+                  )
+                })}
+              </ul>
             </div>
-          </div>
-        )
-      })}
-    </div>
+          )
+        })}
+      </div>
+    </Section>
   )
 }

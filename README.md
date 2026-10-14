@@ -1,62 +1,82 @@
-<img src="public/preview.png" />
+> Kişisel portfolyo sitesi. Next.js 15, Tailwind CSS 4 ve neobrutalist
+> iskelet üzerine kurulu; mavi aksan, sert gölge ve mono etiketlerle
+> kendi içeriğime uyarlanmış, iki dilli bir sürüm.
 
-# Portfolio
+Yayında: https://selcukozdemir23.github.io/portfolio/
 
-Portfolio is a neobrutalism-styled nextjs tailwind template for portfolios.
+## Çalıştırma
 
-## Get started
-
-[Create a new repo](https://github.com/neobrutalism-templates/portfolio/generate) from this template.
-
-### Installation
-
-This template uses `pnpm` package manager so make sure you have it installed.
-
-To install all dependencies run:
+Bu proje `pnpm` kullanıyor.
 
 ```bash
 pnpm i
+pnpm dev
 ```
 
-To run the app locally:
+Geliştirme modunda site `http://localhost:3000` kökünde açılır
+(`basePath` yok). Üretim çıktısını yerelde görmek istersen:
 
 ```bash
-pnpm run dev
+pnpm build
+npx serve out   # ardından /portfolio yolu
 ```
 
-### Config
+## Dil yapısı
 
-- Inside `layout.tsx` update the metadata
-- Inside `page.tsx` update the content
-- Update the `favicon.ico`
+Türkçe sürüm kök dizinde (`/`), İngilizce sürüm `/en` altında. Her dilin
+kendi kök layout'u var, bu yüzden `<html lang>` değeri de doğru çıkıyor.
 
-### Content config
+- `src/i18n/dictionaries.ts`: arayüz metinleri (iki dil)
+- `src/i18n/config.ts`: dil tipleri, tarih biçimlendirme, iç bağlantı
+  yardımcıları
+- `src/app/(tr)/...` ve `src/app/(en)/en/...`: sayfa dosyaları; içerik
+  `src/components/pages/` altındaki bileşenlerden gelir
 
-#### Links on the home page
+## İçerik nerede
 
-To update the links on the home page go to `src/components/links.tsx` and inside `links` array add or remove objects. Each object has 2 properties, `icon`, and `href`. `href` is self-explanatory, and inside `icon` you'll put an icon imported from `@icons-pack/react-simple-icons`. Visit [simpleicons.org](https://simpleicons.org/) to see all the icons. Import them by adding `Si` prefix to their name as I imported them in `links` component.
+- `src/data/projects.ts`: projeler (öne çıkanlar, web ve mobil araçlar,
+  veri ve model çalışmaları)
+- `src/data/experience.ts`: iş deneyimi
+- `src/data/education.ts`: eğitim
+- `src/data/skills.ts`: yetenek grupları
+- `src/components/links.tsx`: e-posta ve sosyal bağlantılar
 
-#### Updating the rest of the content
+Metin alanları `{ tr, en }` olarak tutulur; teknoloji adı, yıl ve repo
+bağlantısı gibi dilden bağımsız değerler düz string kalır. Tarihler
+`2024-02` biçiminde yazılır ve ekranda `Intl` ile o dile çevrilir;
+bitiş tarihi `null` ise "devam ediyor" metni basılır.
 
-Inside `data` folder you have the rest of the content you can edit.
+Yeni proje eklemek için ilgili dizide bir nesne aç. `repoUrl` ve
+`liveLink` alanları isteğe bağlı; sadece biri dolu olsa da kart doğru
+çalışır. Ekran görüntüsü eklemek istediğinde görseli `public/` klasörüne
+koyup `src/components/project.tsx` içindeki karta ekleyebilirsin.
 
-#### Updating the `previewImage` in `projects.ts`
+## Tasarım
 
-Make sure to put `/` + name of the picture that's inside public folder. e.g. you have a `my-project.png` picture inside `public` folder, you'll type:
+- Renk paleti, köşe yarıçapı ve gölge `src/app/globals.css` içindeki CSS
+  değişkenlerinde tanımlı. Açık ve koyu tema ayrı ayrı yazılı, tema
+  düğmesi sağ üstte.
+- Yazı tipleri `src/lib/fonts.ts` içinde yükleniyor (Space Grotesk +
+  JetBrains Mono).
+- Kart, çip ve düğme sınıfları `src/lib/styles.ts` içinde tek yerden
+  yönetiliyor.
 
-```ts
-previewImage: '/my-project.png'
-```
+## Yayın (GitHub Pages)
 
-##### Image aspect ratio
+Site statik olarak dışa aktarılır (`next.config.mjs` içinde
+`output: 'export'`) ve `main` dalına yapılan her push'ta
+`.github/workflows/deploy.yml` iş akışıyla GitHub Pages'e dağıtılır.
 
-Inside `app/work/page.tsx` `previewImage` is wrapped inside AspectRatio component. Change the `ratio` prop so it suits your needs (default preview images are 710 x 260, so I set the ratio to be `71 / 26`).
+Üretim derlemesinde `basePath` otomatik olarak `/portfolio` olur, çünkü
+site bir proje sayfası olarak yayınlanıyor. Repo adını değiştirirsen
+`next.config.mjs` içindeki `repo` değerini güncelle.
 
-#### Updating skills
+İş akışının dağıtım adımı için depoda Pages'in açık ve kaynağının
+"GitHub Actions" olması gerekir: Settings → Pages → Build and deployment
+→ Source: GitHub Actions.
 
-I need to clarify how to edit skills since it looks confusing at first. Inside the `skills.ts` inside the `SKILLS` array, each object in the array is a field of skills (can be anything: frontend, backend, devops, design etc). Each object has a `field` prop which is the field name. Also, each object has a `skills` array where each array member has a `skill` value (used as tooltip value), and `icon` is the icon that will be displayed.
-You update them the same way you'd update links on the home page.
+## Lisans
 
-### Styling
-
-To change the styling visit [styling docs](https://neobrutalism.dev/styling), and copy the desired styling to your css like it's shown in the styling docs.
+İskelet MIT lisanslı [neobrutalism portfolio
+template](https://github.com/neobrutalism-templates/portfolio) üzerine
+kurulmuştur; telif metni `LICENSE` dosyasında korunmuştur.
