@@ -19,6 +19,8 @@ const nextConfig = {
   trailingSlash: true,
   env: { NEXT_PUBLIC_BASE_PATH: basePath },
   images: { unoptimized: true },
+  /* lint ayrı adımda çalışır: `pnpm lint` (ve CI'da derlemeden önce) */
+  eslint: { ignoreDuringBuilds: true },
 }
 
 export default nextConfig

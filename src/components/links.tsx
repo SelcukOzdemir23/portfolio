@@ -7,13 +7,22 @@ import {
   SiLinkedin,
   SiMedium,
 } from '@icons-pack/react-simple-icons'
+import { FileText } from 'lucide-react'
 
 import type { Lang } from '@/i18n/config'
 import { DICT } from '@/i18n/dictionaries'
-import { pressable, surface } from '@/lib/styles'
+import { BASE_PATH } from '@/lib/site'
+import { buttonPrimary, pressable, surface } from '@/lib/styles'
 
 /* E-posta adresini buradan değiştirmen yeterli. */
 const EMAIL = 'selcuk.ozdemir2360@gmail.com'
+
+/*
+  CV `public/` klasöründe durur. Aynı isimle güncellediğin sürece
+  siteye giden sürüm de kendiliğinden yenilenir.
+*/
+const CV_FILE = 'MüşerrefSelçukÖzdemirCV.pdf'
+const CV_HREF = `${BASE_PATH}/${encodeURIComponent(CV_FILE)}`
 
 const PROFILES: {
   icon: IconType
@@ -48,7 +57,17 @@ export default function Links({ lang }: { lang: Lang }) {
   ]
 
   return (
-    <div className="mt-8 flex flex-wrap gap-3">
+    <div className="mt-8 flex flex-wrap items-center gap-3">
+      <a
+        className={`${buttonPrimary} inline-flex items-center gap-2`}
+        href={CV_HREF}
+        rel="noreferrer"
+        target="_blank"
+      >
+        <FileText aria-hidden className="size-4" />
+        {dict.links.cv}
+      </a>
+
       {links.map(({ icon: Icon, label, href }) => {
         const isMail = href.startsWith('mailto:')
 

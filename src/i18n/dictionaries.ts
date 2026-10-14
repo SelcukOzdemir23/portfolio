@@ -31,7 +31,7 @@ export type Dict = {
   }
   project: { live: string; repo: string }
   links: Record<
-    'email' | 'github' | 'linkedin' | 'medium' | 'gitlab' | 'linktree',
+    'cv' | 'email' | 'github' | 'linkedin' | 'medium' | 'gitlab' | 'linktree',
     string
   >
 }
@@ -74,6 +74,7 @@ export const DICT: Record<Lang, Dict> = {
     },
     project: { live: 'canlı site', repo: 'github' },
     links: {
+      cv: 'cv',
       email: 'e-posta',
       github: 'github',
       linkedin: 'linkedin',
@@ -119,6 +120,7 @@ export const DICT: Record<Lang, Dict> = {
     },
     project: { live: 'live site', repo: 'github' },
     links: {
+      cv: 'cv',
       email: 'email',
       github: 'github',
       linkedin: 'linkedin',

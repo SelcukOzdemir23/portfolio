@@ -29,6 +29,8 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - run: pnpm lint
+
       - run: pnpm build
 
       # Next'in _next klasörünü Jekyll yok saymasın diye gerekli

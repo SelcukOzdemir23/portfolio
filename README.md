@@ -34,12 +34,19 @@ kendi kök layout'u var, bu yüzden `<html lang>` değeri de doğru çıkıyor.
 
 ## İçerik nerede
 
-- `src/data/projects.ts`: projeler (öne çıkanlar, web ve mobil araçlar,
-  veri ve model çalışmaları)
+- `src/data/projects.ts`: projeler. `FEATURED_PROJECTS` önem sırasıdır;
+  ana sayfada ilk dördü, projeler sayfasında tamamı büyük kart olarak
+  görünür. Kalanlar `WEB_PROJECTS` ve `DATA_PROJECTS` gruplarına dağılır
 - `src/data/experience.ts`: iş deneyimi
 - `src/data/education.ts`: eğitim
 - `src/data/skills.ts`: yetenek grupları
-- `src/components/links.tsx`: e-posta ve sosyal bağlantılar
+- `src/components/links.tsx`: CV, e-posta ve sosyal bağlantılar
+- `public/MüşerrefSelçukÖzdemirCV.pdf`: siteye açılan CV
+
+CV'yi güncellediğinde aynı isimle `public/MüşerrefSelçukÖzdemirCV.pdf`
+dosyasının üzerine yazmak yeterli; ana sayfadaki "cv" düğmesi her zaman
+bu dosyaya gider. Dosya adını değiştirirsen
+`src/components/links.tsx` içindeki `CV_FILE` sabitini güncelle.
 
 Metin alanları `{ tr, en }` olarak tutulur; teknoloji adı, yıl ve repo
 bağlantısı gibi dilden bağımsız değerler düz string kalır. Tarihler
@@ -60,6 +67,17 @@ koyup `src/components/project.tsx` içindeki karta ekleyebilirsin.
   JetBrains Mono).
 - Kart, çip ve düğme sınıfları `src/lib/styles.ts` içinde tek yerden
   yönetiliyor.
+
+## Geliştirme kontrolleri
+
+```bash
+pnpm lint        # eslint (flat config: eslint.config.mjs)
+pnpm build       # tip kontrolü + statik dışa aktarma
+```
+
+Lint ayarı `eslint.config.mjs` içinde; ESLint'in dizin ağacında config
+arama davranışına bağlı olmadığı için farklı ortamlarda da aynı sonucu
+verir.
 
 ## Yayın (GitHub Pages)
 
