@@ -48,8 +48,8 @@
   --color-overlay: var(--overlay);
   --color-ring: var(--ring);
 
-  --font-sans: var(--font-space-grotesk);
-  --font-mono: var(--font-jetbrains-mono);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono: ui-monospace, 'Cascadia Code', 'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', Menlo, Monaco, Consolas, 'Courier New', monospace;
 
   --spacing-boxShadowX: 4px;
   --spacing-boxShadowY: 4px;
@@ -112,5 +112,30 @@ body::-webkit-scrollbar-thumb {
 @supports not selector(::-webkit-scrollbar) {
   body {
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
+
+/* Yazdırma için temiz görünüm: gezinme ve tema düğmesini gizler,
+   arka planı beyaz yapar. */
+@media print {
+  .fixed,
+  nav {
+    display: none !important;
+  }
+
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  .surface {
+    border-color: black !important;
+    box-shadow: none !important;
+    background-color: white !important;
+  }
+
+  a {
+    color: black !important;
+    text-decoration: underline;
   }
 }
