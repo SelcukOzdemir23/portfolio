@@ -66,7 +66,7 @@ export function ProjectCard({
   return (
     <article className={`${surface} shadow-shadow flex h-full flex-col p-5`}>
       <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-        <h3 className="font-heading text-lg sm:text-xl">
+        <h3 className="font-heading text-xl sm:text-2xl">
           {t(lang, project.name)}
         </h3>
 
@@ -102,7 +102,7 @@ export function ProjectRow({
     <article className="border-border flex flex-wrap items-end justify-between gap-x-8 gap-y-4 border-b-2 py-5 last:border-b-0">
       <div className="max-w-[48ch]">
         <div className="flex items-baseline gap-3">
-          <h4 className="font-heading text-base sm:text-lg">
+          <h4 className="font-heading text-lg sm:text-xl">
             {t(lang, project.name)}
           </h4>
 

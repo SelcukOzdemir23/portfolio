@@ -10,7 +10,7 @@ export default function Work({ lang }: { lang: Lang }) {
 
   return (
     <div>
-      <h1 className="font-heading text-2xl tracking-tight sm:text-4xl">
+      <h1 className="font-heading text-3xl tracking-tight sm:text-5xl">
         {dict.work.title}
       </h1>
 

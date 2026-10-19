@@ -6,34 +6,35 @@
 /*
   Palet: tek aksan rengi (derin mavi) + soğuk nötrler.
   Açık temada aksan koyu (üzerine beyaz metin), koyu temada
-  açık mavi (üzerine lacivert metin). Kenarlıklar saf siyah değil, lacivert.
+  açık mavi (üzerine lacivert metin). Kenarlıklar ince ve saygıdeğer;
+  thick border/kenarlık bir AI slop izidir, burada kullanılmıyor.
 */
 :root {
-  --background: oklch(96.8% 0.014 250);
+  --background: oklch(97.2% 0.01 250);
   --secondary-background: oklch(99.4% 0.004 250);
   --soft: oklch(92.4% 0.036 255);
-  --foreground: oklch(22% 0.035 262);
-  --muted-foreground: oklch(45% 0.03 260);
-  --main: oklch(48% 0.19 258);
+  --foreground: oklch(20% 0.03 262);
+  --muted-foreground: oklch(48% 0.03 260);
+  --main: oklch(46% 0.19 258);
   --main-foreground: oklch(98.5% 0.008 250);
-  --border: oklch(22% 0.035 262);
-  --ring: oklch(48% 0.19 258);
-  --overlay: oklch(22% 0.035 262 / 0.75);
-  --shadow: 4px 4px 0px 0px var(--border);
+  --border: oklch(30% 0.02 260);
+  --ring: oklch(46% 0.19 258);
+  --overlay: oklch(22% 0.035 262 / 0.6);
+  --shadow: 0 2px 8px -2px oklch(22% 0.03 262 / 0.15);
 }
 
 .dark {
-  --background: oklch(20% 0.028 262);
-  --secondary-background: oklch(25.5% 0.036 262);
-  --soft: oklch(31% 0.052 258);
-  --foreground: oklch(94.5% 0.01 250);
-  --muted-foreground: oklch(74% 0.025 252);
-  --main: oklch(72% 0.14 256);
-  --main-foreground: oklch(17% 0.03 262);
-  --border: oklch(11% 0.022 262);
-  --ring: oklch(72% 0.14 256);
-  --overlay: oklch(11% 0.022 262 / 0.85);
-  --shadow: 4px 4px 0px 0px var(--border);
+  --background: oklch(18% 0.025 262);
+  --secondary-background: oklch(22% 0.03 262);
+  --soft: oklch(28% 0.04 258);
+  --foreground: oklch(95% 0.01 250);
+  --muted-foreground: oklch(62% 0.025 252);
+  --main: oklch(70% 0.14 256);
+  --main-foreground: oklch(15% 0.03 262);
+  --border: oklch(18% 0.02 262);
+  --ring: oklch(70% 0.14 256);
+  --overlay: oklch(10% 0.02 262 / 0.7);
+  --shadow: 0 2px 12px -2px oklch(12% 0.02 262 / 0.35);
 }
 
 @theme inline {
@@ -48,14 +49,14 @@
   --color-overlay: var(--overlay);
   --color-ring: var(--ring);
 
-  --font-sans: var(--font-space-grotesk);
+  --font-sans: var(--font-outfit);
   --font-mono: var(--font-jetbrains-mono);
 
   --spacing-boxShadowX: 4px;
   --spacing-boxShadowY: 4px;
   --spacing-reverseBoxShadowX: -4px;
   --spacing-reverseBoxShadowY: -4px;
-  --radius-base: 5px;
+  --radius-base: 6px;
   --shadow-shadow: var(--shadow);
   --font-weight-heading: 700;
 }
@@ -96,17 +97,17 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 14px;
+  width: 12px;
 }
 
 body::-webkit-scrollbar-track {
   background: var(--sb-track-color);
-  border-left: 2px solid var(--border);
+  border-left: 1px solid var(--border);
 }
 
 body::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
-  border-left: 2px solid var(--border);
+  border-left: 1px solid var(--border);
 }
 
 @supports not selector(::-webkit-scrollbar) {

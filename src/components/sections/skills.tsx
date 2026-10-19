@@ -12,7 +12,9 @@ export default function Skills({ lang }: { lang: Lang }) {
         {SKILLS.map(({ field, skills }) => {
           return (
             <div key={field.en}>
-              <h3 className={meta}>{t(lang, field)}</h3>
+              <h3 className="font-mono text-xs text-muted-foreground font-semibold">
+                {t(lang, field)}
+              </h3>
 
               <ul className="mt-3 flex flex-wrap gap-2">
                 {skills.map(({ skill, icon: Icon }) => {

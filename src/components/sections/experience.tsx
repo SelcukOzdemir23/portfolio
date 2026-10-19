@@ -15,7 +15,7 @@ export default function Experience({ lang }: { lang: Lang }) {
           return (
             <div key={`${role.company.en}-${role.role.en}`}>
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                <h3 className="font-heading text-base sm:text-lg">
+                <h3 className="font-heading text-lg sm:text-xl">
                   {t(lang, role.role)}, {t(lang, role.company)}
                 </h3>
 

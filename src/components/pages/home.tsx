@@ -17,7 +17,7 @@ export default function Home({ lang }: { lang: Lang }) {
           {dict.home.role}
         </p>
 
-        <h1 className="font-heading mt-4 text-3xl leading-[1.05] tracking-tight sm:text-5xl">
+        <h1 className="font-heading mt-4 text-4xl leading-[1.05] tracking-tight sm:text-6xl">
           Müşerref Selçuk Özdemir
         </h1>
 

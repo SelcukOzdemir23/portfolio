@@ -1,8 +1,9 @@
-import { JetBrains_Mono, Space_Grotesk } from 'next/font/google'
+import { JetBrains_Mono, Outfit } from 'next/font/google'
 
-const spaceGrotesk = Space_Grotesk({
+const outfit = Outfit({
   subsets: ['latin'],
-  variable: '--font-space-grotesk',
+  variable: '--font-outfit',
+  weight: ['400', '500', '600', '700'],
 })
 
 const jetbrainsMono = JetBrains_Mono({
@@ -11,4 +12,4 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 /* İki dilin kök layout'u aynı font değişkenlerini kullanır. */
-export const fontClassName = `${spaceGrotesk.variable} ${jetbrainsMono.variable}`
+export const fontClassName = `${outfit.variable} ${jetbrainsMono.variable}`
