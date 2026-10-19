@@ -12,6 +12,16 @@ export type Role = {
 
 const PAST_ROLES: Role[] = [
   {
+    company: { tr: 'Wyższa Szkoła Technologii Informatycznych', en: 'Wyższa Szkoła Technologii Informatycznych' },
+    role: { tr: 'Stajyer', en: 'Intern' },
+    description: {
+      tr: 'Erasmus+ programı kapsamında Polonya’da staj çalışması gerçekleştirdim. Teknik destek ve araştırma etkinliklerinde katkı sağladım.',
+      en: 'Completed an internship in Poland under the Erasmus+ programme. Contributed to technical support and research activities.',
+    },
+    startDate: '2026-07',
+    endDate: '2026-09',
+  },
+  {
     company: { tr: 'TÜBİTAK 1002-A', en: 'TÜBİTAK 1002-A' },
     role: { tr: 'Bursiyer Araştırmacı', en: 'Project Bursary Researcher' },
     description: {
