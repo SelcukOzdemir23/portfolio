@@ -29,6 +29,28 @@ const github = (repo: string) => `https://github.com/SelcukOzdemir23/${repo}`
 /* Önem sırası: ana sayfada ilk dördü, projeler sayfasında tamamı kart olarak. */
 export const FEATURED_PROJECTS: Project[] = [
   {
+    name: same('Shelf'),
+    summary: {
+      tr: 'Açık kaynaklı uygulamaların derlemelerini GitHub üzerinden yayınladığı bağımsız, statik bir kataloğudur. Çalışma zamanı API’si ve hesap gerektirmez.',
+      en: 'An independent, static catalogue of open-source apps that ship their builds as GitHub releases. No runtime API, no accounts.',
+    },
+    year: '2026',
+    stack: ['astro', 'typescript', 'css'],
+    repoUrl: github('shelf'),
+    liveLink: 'https://selcukozdemir23.github.io/shelf/',
+  },
+  {
+    name: same('RetroTV'),
+    summary: {
+      tr: 'Ülkelerin açık IPTV kanallarını eski bir CRT televizyon deneyimiyle izleten web uygulaması. Tarama çizgileri, kanal geçişinde statik gürültü ve kumanda paneli var.',
+      en: 'Web app that plays public IPTV channels from around the world through a vintage CRT television experience. Scanlines, static noise between channels and a remote control panel are all there.',
+    },
+    year: '2026',
+    stack: ['astro', 'svelte', 'typescript', 'hls.js'],
+    repoUrl: github('retrotv'),
+    liveLink: 'https://selcukozdemir23.github.io/retrotv/',
+  },
+  {
     name: same('AtaDey'),
     summary: {
       tr: 'TDK deyimleri ve atasözleriyle oynanan oyun sitesi. Vitest ile test edilmiş, canlıda yayında.',
@@ -87,17 +109,6 @@ export const FEATURED_PROJECTS: Project[] = [
     year: '2022',
     stack: ['jupyter', 'python'],
     repoUrl: github('Firat-Universitesi-Kaynaklar'),
-  },
-  {
-    name: same('RetroTV'),
-    summary: {
-      tr: 'Ülkelerin açık IPTV kanallarını eski bir CRT televizyon deneyimiyle izleten web uygulaması. Tarama çizgileri, kanal geçişinde statik gürültü ve kumanda paneli var.',
-      en: 'Web app that plays public IPTV channels from around the world through a vintage CRT television experience. Scanlines, static noise between channels and a remote control panel are all there.',
-    },
-    year: '2026',
-    stack: ['astro', 'svelte', 'typescript', 'hls.js'],
-    repoUrl: github('retrotv'),
-    liveLink: 'https://selcukozdemir23.github.io/retrotv/',
   },
   {
     name: same('EcoSat-Analyzer'),
